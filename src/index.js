@@ -48,7 +48,12 @@ function fetchImages() {
             top: refs.galleryContainer.offsetHeight,
             left: 0,
             behavior: 'smooth',
-        })
+        });
+
+        if (hits.length === 0) {
+      loadMoreButton.hide();
+      return noData();
+    }
     })
 }
 
@@ -62,9 +67,16 @@ function clearGalleryContainer () {
 
 function emptyStringAlert(){
     info({
-        title: 'No tag!',
-        text: 'Please, specify your request!',
+        text: 'Please enter something!',
         delay: 5000,
         closerHover: true,
     })
+}
+
+function noData() {
+  info({
+    text: 'No data. Please enter another query!',
+    delay: 3000,
+    closerHover: true,
+  });
 }
